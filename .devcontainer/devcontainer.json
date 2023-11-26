@@ -1,0 +1,21 @@
+{
+	"name": "Elixir",
+	"dockerComposeFile": [
+		"./docker-compose.dev.yml"
+	],
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"jakebecker.elixir-ls",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"service": "dev",
+	"workspaceFolder": "/workspace",
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}

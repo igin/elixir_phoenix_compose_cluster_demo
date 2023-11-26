@@ -1,0 +1,50 @@
+services:
+  node1:
+    build: compose_cluster_demo
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_NAME=app@10.0.0.11
+      - NODE_COOKIE=supersecretcookie
+      - DNS_CLUSTER_QUERY=app.internal
+    networks:
+      new_network:
+        ipv4_address: 10.0.0.11
+        aliases:
+          - app.internal
+
+  node2:
+    build: compose_cluster_demo
+    ports:
+      - "4001:4000"
+    environment:
+      - NODE_NAME=app@10.0.0.12
+      - NODE_COOKIE=supersecretcookie
+      - DNS_CLUSTER_QUERY=app.internal
+    networks:
+      new_network:
+        ipv4_address: 10.0.0.12
+        aliases:
+          - app.internal
+
+  node3:
+    build: compose_cluster_demo
+    ports:
+      - "4002:4000"
+    environment:
+      - NODE_NAME=app@10.0.0.13
+      - NODE_COOKIE=supersecretcookie
+      - DNS_CLUSTER_QUERY=app.internal
+    networks:
+      new_network:
+        ipv4_address: 10.0.0.13
+        aliases:
+          - app.internal
+
+networks:
+  new_network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.0.0.0/16
+         gateway: 10.0.0.1
